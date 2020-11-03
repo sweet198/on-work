@@ -12,6 +12,8 @@ const autoprefixer = require('gulp-autoprefixer');
 const webp = require('gulp-webp');
 const webpHTML = require('gulp-webp-html');
 const webpCss = require('gulp-webp-css');
+const webpack = require('webpack-stream');
+const webpackConfig = require('./webpack.config.js');
 
 gulp.task('sass', () => 
 	gulp.src('src/scss/**/*.scss')
@@ -29,6 +31,7 @@ gulp.task('sass', () =>
 gulp.task('js', () => 
 	// may be in future it'll be compiled or smth
 	gulp.src('src/scripts/**/*.js')
+		.pipe(webpack(webpackConfig))
 		.pipe(gulp.dest('dist/scripts'))
 		.pipe(browsersync.stream())
 );
@@ -45,7 +48,7 @@ gulp.task('image', () =>
 );
 
 gulp.task('html', () => 
-	gulp.src('src/**/*.html')				
+	gulp.src('src/index.html')				
 		.pipe(fileinclude({
 			prefix: '@@',
 			basepath: '@file'
