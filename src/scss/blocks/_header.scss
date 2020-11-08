@@ -1,0 +1,28 @@
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  width: auto;
+  height: 350px;
+  transform-style: preserve-3d;
+}
+
+.block {
+  width: 50px;
+  height: 50px;
+  background-color: green;
+  box-sizing: border-box;
+  border: 2px solid darkgreen;
+  border-radius: 10px;
+  transform: rotateX(30deg);
+  transition:0.5s;
+  & img {
+    width: inherit;
+  }
+  &:hover {
+    transform: rotateX(180deg);
+  }
+}
+
+
+
