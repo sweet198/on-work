@@ -1,6 +1,4 @@
 function header () {
-	const tagHeader = document.querySelector('.page-header');
-	console.log(tagHeader);
 	class Block {
 		constructor(parentSelector, className, src, alt) {
 			this.parent = document.querySelector(parentSelector);
@@ -18,9 +16,8 @@ function header () {
 			this.parent.append(element);
 		}
 	}
-	const block = new Block('.page-header', 'block', '../img/blick.webp', 'blick');
-	setInterval(() => block.render(), 100);
-
+	const block = new Block('.container', 'block', '../img/blick.webp', 'blick');
+	setInterval(() => block.render(), 2000);
 }
 
 export default header;
