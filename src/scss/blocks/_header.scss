@@ -1,9 +1,16 @@
-header {
+@keyframes scale1 {
+  from {scale: 0;}
+  50% {scale: 50%;}
+  to {scale: 100%;}
+}
+
+.container {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
   width: auto;
-  height: 350px;
+  height: 50px;
   transform-style: preserve-3d;
 }
 
@@ -14,15 +21,15 @@ header {
   box-sizing: border-box;
   border: 2px solid darkgreen;
   border-radius: 10px;
-  transform: rotateX(30deg);
+  animation: scale1  2s infinite ease-in-out;
+  transform: rotateX(0deg);
   transition:0.5s;
   & img {
-    width: inherit;
+    width: 15px;
   }
   &:hover {
     transform: rotateX(180deg);
   }
 }
-
 
 
