@@ -4,6 +4,11 @@
   to {scale: 100%;}
 }
 
+header {
+  background-image: url("../img/1.jpg");
+  background-size: cover;
+}
+
 .container {
   position: relative;
   display: flex;
@@ -17,18 +22,18 @@
 .block {
   width: 50px;
   height: 50px;
-  background-color: green;
+  background-color: rgba(118, 185, 0, 0.1);
   box-sizing: border-box;
-  border: 2px solid darkgreen;
+  border: 1px solid darkgreen;
   border-radius: 10px;
-  animation: scale1  2s infinite ease-in-out;
-  transform: rotateX(0deg);
-  transition:0.5s;
+  transition:0.05s;
   & img {
     width: 15px;
   }
   &:hover {
-    transform: rotateX(180deg);
+    transform: translateY(-5px);
+    box-shadow: 0 2px 5px;
+    background-color: rgba(118, 185, 0, 1);
   }
 }
 
