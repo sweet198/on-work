@@ -1,7 +1,10 @@
 function header () {
 
 	const windowInnerWidth = document.documentElement.scrollWidth;
-	const indexOfBlocks = 50;
+	const pageHeight = document.documentElement.scrollHeight;
+	const header = document.querySelector('.page-header');
+	header.style.height = `${pageHeight}px`;
+	const indexOfBlocks = 40;
 
 	function renderBlock(parentSelector,className, src, alt, k) {
 		const element = document.createElement('div');
@@ -21,10 +24,10 @@ function header () {
 		}
 		parent.append(element);
 	}
-	for(let i = 1; i <= 15; i++) {
+	for(let i = 1; i <= (pageHeight / (windowInnerWidth / indexOfBlocks)); i++) {
 		renderBlock('.page-header', `container`,'','', i);
-		for (let k = 1; k <= (indexOfBlocks); k++) {
-			setTimeout(() => renderBlock(`.container${i}`, `block`), k * 100 * (i / 30));
+		for (let k = 1; k <= indexOfBlocks; k++) {
+			setTimeout(() => renderBlock(`.container${i}`, `block`), k * 100 * (i / 10));
 		}
 	}
 

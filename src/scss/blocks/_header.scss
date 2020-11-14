@@ -16,7 +16,6 @@ header {
   align-content: flex-start;
   width: auto;
   height: 50px;
-  transform-style: preserve-3d;
 }
 
 .block {
@@ -33,7 +32,7 @@ header {
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 2px 5px;
-    background-color: rgba(118, 185, 0, 1);
+    background-color: rgba(118, 185, 0, 0.7);
   }
 }
 
