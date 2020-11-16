@@ -4,7 +4,7 @@ function header () {
 	const pageHeight = document.documentElement.scrollHeight;
 	const header = document.querySelector('.page-header');
 	header.style.height = `${pageHeight}px`;
-	const indexOfBlocks = 40;
+	const indexOfBlocks = 60;
 
 	function renderBlock(parentSelector,className, src, alt, k) {
 		const element = document.createElement('div');
@@ -13,7 +13,7 @@ function header () {
 		element.style.height = `${windowInnerWidth / indexOfBlocks}px`;
 		if(element.classList.contains('block')) {
 			element.style.width = `${windowInnerWidth / indexOfBlocks}px`;
-			element.style.borderRadius = `${(windowInnerWidth / indexOfBlocks) / 3}%`
+			element.style.borderRadius = `${(windowInnerWidth / indexOfBlocks) / 2}%`
 		}
 		if (src && alt)
 		element.innerHTML = `       
@@ -27,7 +27,8 @@ function header () {
 	for(let i = 1; i <= (pageHeight / (windowInnerWidth / indexOfBlocks)); i++) {
 		renderBlock('.page-header', `container`,'','', i);
 		for (let k = 1; k <= indexOfBlocks; k++) {
-			setTimeout(() => renderBlock(`.container${i}`, `block`), k * 100 * (i / 10));
+			// setTimeout(() => renderBlock(`.container${i}`, `block`), k * 100 / (i / 10));
+			setTimeout(() => renderBlock(`.container${i}`, `block`), Math.random() * k * 100);
 		}
 	}
 
