@@ -24,32 +24,42 @@ function header () {
 		}
 		parent.append(element);
 	}
-	for(let i = 1; i <= (pageHeight / (windowInnerWidth / indexOfBlocks)); i++) {
-		renderBlock('.page-header', `container`,'','', i);
-		for (let k = 1; k <= indexOfBlocks; k++) {
-			// setTimeout(() => renderBlock(`.container${i}`, `block`), k * 100 / (i / 10));
-			setTimeout(() => renderBlock(`.container${i}`, `block`), Math.random() * k * 100);
-		}
-	}
-	// add button
-	const button = document.createElement('button');
-	button.innerHTML = `Attention!!!`
-	button.style.position = 'absolute';
-	button.style.top = `50%`;
-	button.style.left = `50%`;
-	button.style.width = '100px';
-	header.append(button);
-	button.addEventListener('click', () => {
-		header.innerHTML = '';
+	
+	function renderStructure() {
 		for(let i = 1; i <= (pageHeight / (windowInnerWidth / indexOfBlocks)); i++) {
-		renderBlock('.page-header', `container`,'','', i);
+			renderBlock('.page-header', `container`,'','', i);
 			for (let k = 1; k <= indexOfBlocks; k++) {
 				// setTimeout(() => renderBlock(`.container${i}`, `block`), k * 100 / (i / 10));
 				setTimeout(() => renderBlock(`.container${i}`, `block`), Math.random() * k * 100);
 			}
 		}
-		header.append(button);	
-	});
+	}
+
+	renderStructure();
+
+	// add button
+	function addButton() {
+		const button = document.createElement('button');
+		button.innerHTML = `Attention!!!`
+		button.style.position = 'absolute';
+		button.style.top = `50%`;
+		button.style.left = `50%`;
+		button.style.width = '100px';
+		header.append(button);
+		button.addEventListener('click', () => {
+			header.innerHTML = '';
+			for(let i = 1; i <= (pageHeight / (windowInnerWidth / indexOfBlocks)); i++) {
+				renderBlock('.page-header', `container`,'','', i);
+				for (let k = 1; k <= indexOfBlocks; k++) {
+					// setTimeout(() => renderBlock(`.container${i}`, `block`), k * 100 / (i / 10));
+					setTimeout(() => renderBlock(`.container${i}`, `block`), Math.random() * k * 100);
+				}
+			}
+			header.append(button);
+		});
+	}
+	addButton();
+
 }
 
 export default header;
