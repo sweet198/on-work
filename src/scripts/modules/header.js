@@ -4,7 +4,7 @@ function header () {
 	const pageHeight = document.documentElement.scrollHeight;
 	const header = document.querySelector('.page-header');
 	header.style.height = `${pageHeight}px`;
-	const indexOfBlocks = 60;
+	const indexOfBlocks = 70;
 
 	function renderBlock(parentSelector,className, src, alt, k) {
 		const element = document.createElement('div');
@@ -31,23 +31,25 @@ function header () {
 			setTimeout(() => renderBlock(`.container${i}`, `block`), Math.random() * k * 100);
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// const container2 = new Block('header', 'container2');
-	// const block2 = new Block('.container2', 'block2', '../img/blick.webp', 'blick');
-	// setTimeout(() => container2.render(), 2000);
-	// setInterval(() => block2.render(), 2500);
+	// add button
+	const button = document.createElement('button');
+	button.innerHTML = `Attention!!!`
+	button.style.position = 'absolute';
+	button.style.top = `50%`;
+	button.style.left = `50%`;
+	button.style.width = '100px';
+	header.append(button);
+	button.addEventListener('click', () => {
+		header.innerHTML = '';
+		for(let i = 1; i <= (pageHeight / (windowInnerWidth / indexOfBlocks)); i++) {
+		renderBlock('.page-header', `container`,'','', i);
+			for (let k = 1; k <= indexOfBlocks; k++) {
+				// setTimeout(() => renderBlock(`.container${i}`, `block`), k * 100 / (i / 10));
+				setTimeout(() => renderBlock(`.container${i}`, `block`), Math.random() * k * 100);
+			}
+		}
+		header.append(button);	
+	});
 }
 
 export default header;
