@@ -41,11 +41,7 @@ function header () {
 	// add button
 	function addButton() {
 		const button = document.createElement('button');
-		button.innerHTML = `Attention!!!`
-		button.style.position = 'absolute';
-		button.style.top = `50%`;
-		button.style.left = `50%`;
-		button.style.width = '100px';
+		button.innerHTML = `Regenerate`
 		header.append(button);
 		button.addEventListener('click', () => {
 			header.innerHTML = '';
