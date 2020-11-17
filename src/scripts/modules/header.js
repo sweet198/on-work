@@ -4,16 +4,16 @@ function header () {
 	const pageHeight = document.documentElement.scrollHeight;
 	const header = document.querySelector('.page-header');
 	header.style.height = `${pageHeight}px`;
-	const indexOfBlocks = 70;
+	const indexOfBlocks = 50;
 
 	function renderBlock(parentSelector,className, src, alt, k) {
 		const element = document.createElement('div');
 		const parent = document.querySelector(parentSelector);
 		element.classList.add(className);
-		element.style.height = `${windowInnerWidth / indexOfBlocks}px`;
+		element.style.width = `${pageHeight / indexOfBlocks}px`;
 		if(element.classList.contains('block')) {
-			element.style.width = `${windowInnerWidth / indexOfBlocks}px`;
-			element.style.borderRadius = `${(windowInnerWidth / indexOfBlocks) / 2}%`
+			element.style.height = `${pageHeight / indexOfBlocks}px`;
+			element.style.borderRadius = `${(pageHeight / indexOfBlocks) / 2}%`
 		}
 		if (src && alt)
 		element.innerHTML = `       
@@ -25,14 +25,15 @@ function header () {
 		parent.append(element);
 	}
 	
-	function renderStructure() {
-		for(let i = 1; i <= (pageHeight / (windowInnerWidth / indexOfBlocks)); i++) {
+	async function renderStructure() {
+		for(let i = 1; i <= (windowInnerWidth / (pageHeight / indexOfBlocks)); i++) {
 			renderBlock('.page-header', `container`,'','', i);
 			for (let k = 1; k <= indexOfBlocks; k++) {
 				// setTimeout(() => renderBlock(`.container${i}`, `block`), k * 100 / (i / 10));
 				setTimeout(() => renderBlock(`.container${i}`, `block`), Math.random() * k * 100);
 			}
 		}
+		await addButton();
 	}
 
 	renderStructure();
@@ -48,7 +49,7 @@ function header () {
 		header.append(button);
 		button.addEventListener('click', () => {
 			header.innerHTML = '';
-			for(let i = 1; i <= (pageHeight / (windowInnerWidth / indexOfBlocks)); i++) {
+			for(let i = 1; i <= (windowInnerWidth / (pageHeight / indexOfBlocks)); i++) {
 				renderBlock('.page-header', `container`,'','', i);
 				for (let k = 1; k <= indexOfBlocks; k++) {
 					// setTimeout(() => renderBlock(`.container${i}`, `block`), k * 100 / (i / 10));
@@ -58,8 +59,6 @@ function header () {
 			header.append(button);
 		});
 	}
-	addButton();
-
 }
 
 export default header;
