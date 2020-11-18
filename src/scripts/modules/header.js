@@ -1,19 +1,19 @@
 function header () {
 
-	const windowInnerWidth = document.documentElement.scrollWidth;
+	const pageWidth = document.documentElement.scrollWidth;
 	const pageHeight = document.documentElement.scrollHeight;
 	const header = document.querySelector('.page-header');
 	header.style.height = `${pageHeight}px`;
-	const indexOfBlocks = 50;
+	const indexOfBlocks = 100;
 
 	function renderBlock(parentSelector,className, src, alt, k) {
 		const element = document.createElement('div');
 		const parent = document.querySelector(parentSelector);
 		element.classList.add(className);
-		element.style.width = `${pageHeight / indexOfBlocks}px`;
+		element.style.width = `${pageWidth / indexOfBlocks}px`;
 		if(element.classList.contains('block')) {
-			element.style.height = `${pageHeight / indexOfBlocks}px`;
-			element.style.borderRadius = `${(pageHeight / indexOfBlocks) / 2}%`
+			element.style.height = `${pageWidth / indexOfBlocks}px`;
+			element.style.borderRadius = `15%`;
 		}
 		if (src && alt)
 		element.innerHTML = `       
@@ -26,7 +26,7 @@ function header () {
 	}
 	
 	async function renderStructure() {
-		for(let i = 1; i <= (windowInnerWidth / (pageHeight / indexOfBlocks)); i++) {
+		for(let i = 1; i <= (pageWidth / (pageHeight / indexOfBlocks)); i++) {
 			renderBlock('.page-header', `container`,'','', i);
 			for (let k = 1; k <= indexOfBlocks; k++) {
 				// setTimeout(() => renderBlock(`.container${i}`, `block`), k * 100 / (i / 10));
@@ -45,13 +45,7 @@ function header () {
 		header.append(button);
 		button.addEventListener('click', () => {
 			header.innerHTML = '';
-			for(let i = 1; i <= (windowInnerWidth / (pageHeight / indexOfBlocks)); i++) {
-				renderBlock('.page-header', `container`,'','', i);
-				for (let k = 1; k <= indexOfBlocks; k++) {
-					// setTimeout(() => renderBlock(`.container${i}`, `block`), k * 100 / (i / 10));
-					setTimeout(() => renderBlock(`.container${i}`, `block`), Math.random() * k * 100);
-				}
-			}
+			renderStructure();
 			header.append(button);
 		});
 	}
